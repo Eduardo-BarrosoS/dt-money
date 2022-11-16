@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as zod from 'zod';
 
@@ -18,11 +18,15 @@ type NewTransactionType = zod.infer<typeof newTransactionFormSchema>
 export function NewTransactionModal() {
 
     const {
+        control,
         register,
         handleSubmit,
         formState: { isSubmitting }
     } = useForm<NewTransactionType>({
-        resolver: zodResolver(newTransactionFormSchema)
+        resolver: zodResolver(newTransactionFormSchema),
+        defaultValues: {
+            type: 'income'
+        }
     })
 
     function handleCreateNewTransaction(data: NewTransactionType) {
@@ -46,24 +50,32 @@ export function NewTransactionModal() {
                     <input
                         type="number"
                         {...register('price', { valueAsNumber: true })}
-                        placeholder="Preço" name="" id="" />
+                        placeholder="Preço" required />
                     <input
                         type="text"
                         {...register('category')}
                         placeholder="Categoria" required />
 
-                    <TransactionType>
-                        <TransactionTypeButton variant="income" value="income">
-                            <ArrowCircleDown size={24} />
-                            Entrada
-                        </TransactionTypeButton>
-                        <TransactionTypeButton variant="outcome" value="outcome">
-                            <ArrowCircleUp size={24} />
-                            Saída
-                        </TransactionTypeButton>
-                    </TransactionType>
+                    <Controller
+                        control={control}
+                        name="type"
+                        render={({ field }) => {
+                            return (
+                                <TransactionType onValueChange={field.onChange} value={ field.value }>
+                                    <TransactionTypeButton variant="income" value="income">
+                                        <ArrowCircleDown size={24} />
+                                        Entrada
+                                    </TransactionTypeButton>
+                                    <TransactionTypeButton variant="outcome" value="outcome">
+                                        <ArrowCircleUp size={24} />
+                                        Saída
+                                    </TransactionTypeButton>
+                                </TransactionType>
+                            )
+                        }}
+                    />
 
-                    <button type="submit" disabled={ isSubmitting }>
+                    <button type="submit" disabled={isSubmitting}>
                         Cadastrar
                     </button>
                 </form>
