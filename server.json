@@ -5,16 +5,24 @@
             "description": "desenvolvimento de sites",
             "type": "income",
             "category": "Venda",
-            "price": 23223,
-            "createdAt": "2022-11-15T19:13:04.856Z"
+            "price": 2500,
+            "createdAt": "2022-11-16T16:46:58.234Z"
         },
         {
             "id": 2,
             "description": "Compras",
             "type": "outcome",
             "category": "Alimentação",
-            "price": 423,
-            "createdAt": "2022-11-15T19:11:04.856Z"
+            "price": 500,
+            "createdAt": "2022-11-12T16:46:58.234Z"
+        },
+        {
+            "id": 3,
+            "description": "Curso de Inglês",
+            "type": "outcome",
+            "category": "Educação",
+            "price": 1500,
+            "createdAt": "2022-10-16T16:46:58.234Z"
         }
     ]
 }

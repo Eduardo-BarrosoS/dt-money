@@ -18,7 +18,7 @@ interface ITransactionProviderProps {
     children: ReactNode
 }
 
-const TransactionContext = createContext({} as ITransactionsType)
+export const TransactionContext = createContext({} as ITransactionsType)
 
 export function TransactionsProvider({ children }: ITransactionProviderProps) {
     const [transactions, setTransactions] = useState<ITransaction[]>([]);

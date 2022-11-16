@@ -15,7 +15,7 @@ export const SummeryContainer = styled.div`
 `
 
 interface SummeryCardProps {
-    variant?: 'green';
+    variant?: 'green' | 'red';
 }
 
 export const SummeryCard = styled.div<SummeryCardProps>`
@@ -37,7 +37,9 @@ export const SummeryCard = styled.div<SummeryCardProps>`
         font-size: 2rem;
     }
 
-    ${props => props.variant === 'green' && css`
-    background: ${props.theme["green-700"]};
-    `}
+    ${props => props.variant === 'green' ? css`
+        background: ${props.theme["green-700"]};
+    ` :  props.variant === 'red' && css`
+        background: ${props.theme["red-700"]};
+    ` }
 `
