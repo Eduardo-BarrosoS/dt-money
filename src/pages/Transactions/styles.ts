@@ -7,12 +7,19 @@ export const TransactionsContainer = styled.main`
   padding: 0 1.5rem;
 `
 
+export const TransactionsTableContainer = styled.div`
+  width: 100%;
+  display: none;
+
+  @media (min-width: 751px) {
+    display: block;
+  }
+`
 export const TransactionsTable = styled.table`
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 0.5rem;
   margin-top: 1.5rem;
-  display: none;
   td {
     padding: 1.25rem 2rem;
     background: ${(props) => props.theme['gray-700']};
@@ -25,10 +32,6 @@ export const TransactionsTable = styled.table`
       border-top-right-radius: 6px;
       border-bottom-right-radius: 6px;
     }
-  }
-
-  @media (min-width: 751px) {
-    display: block;
   }
 `
 
