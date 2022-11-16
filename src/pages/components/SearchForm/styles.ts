@@ -44,4 +44,12 @@ export const SearchFormContainer = styled.form`
       transition: all 0.2s;
     }
   }
+
+  @media (max-width: 600px) {
+    button {
+      span {
+        display: none;
+      }
+    }
+  }
 `

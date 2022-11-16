@@ -1,3 +1,4 @@
+import { TagSimple } from 'phosphor-react'
 import { useContextSelector } from 'use-context-selector'
 import { Header } from '../../components/Header'
 import { Summary } from '../../components/Summary'
@@ -6,6 +7,7 @@ import { dateFormatter, priceFormatter } from '../../utils/formatter'
 import { SearchForm } from '../components/SearchForm'
 import {
   PriceHighLight,
+  TransactionsCard,
   TransactionsContainer,
   TransactionsTable,
 } from './styles'
@@ -22,6 +24,28 @@ export function Transactions() {
 
       <TransactionsContainer>
         <SearchForm />
+        {transactions.map((transaction) => {
+          return (
+            <TransactionsCard key={transaction.id}>
+              <span>{transaction.description}</span>
+
+              <PriceHighLight parent="card" variant={transaction.type}>
+                {transaction.type === 'outcome' && '- '}
+                {priceFormatter.format(transaction.price)}
+              </PriceHighLight>
+
+              <div>
+                <div>
+                  <TagSimple size={16} />
+                  <span>{transaction.category}</span>
+                </div>
+                <span>
+                  {dateFormatter.format(new Date(transaction.createdAt))}
+                </span>
+              </div>
+            </TransactionsCard>
+          )
+        })}
         <TransactionsTable>
           <tbody>
             {transactions.map((transaction) => {
